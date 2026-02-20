@@ -15,17 +15,17 @@ class RegionConfig(BaseModel):
     region_id: str
     name: str
     population: int
-    employment_rate: float = Field(..., ge=0, le=1)  # 0-1
+    employment_rate: float = Field(0.46, ge=0, le=1)  # 0-1
     food_supply: float
     energy_supply: float
     price_index: float = 1.0  # start at 1.0
     stability: float = Field(0.85, ge=0, le=1) # 0-1 start at 0.85
 
-
 class WorldCreateResponse(BaseModel):
+    name: str
     regions: list[RegionConfig]
     trade_links: list[TradeLinkConfig]
-    name: str
+
 
 class WorldOutResponse(WorldCreateResponse):
     world_id: str
